@@ -1,0 +1,55 @@
+﻿<Window x:Class="PacketGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PacketGenerator"
+        mc:Ignorable="d"
+        Title="MessagePack 모델 생성기" Height="600" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 클래스 이름 입력 -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Text="클래스 이름:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox x:Name="ClassNameTextBox" Width="200"/>
+        </StackPanel>
+
+        <!-- 필드 추가 -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,10">
+            <TextBlock Text="필드 타입:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox x:Name="FieldTypeTextBox" Width="100" Margin="0,0,10,0"/>
+            <TextBlock Text="필드 이름:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox x:Name="FieldNameTextBox" Width="100" Margin="0,0,10,0"/>
+            <Button Content="필드 추가" Width="100" Margin="5,0" Click="AddFieldButton_Click"/>
+            <Button Content="필드 수정" Width="100" Margin="5,0" Click="UpdateFieldButton_Click"/>
+            <Button Content="필드 삭제" Width="100" Click="DeleteFieldButton_Click"/>
+        </StackPanel>
+
+        <!-- 추가된 필드 목록 -->
+        <GroupBox Header="필드 목록" Grid.Row="2" Margin="0,0,0,10">
+            <ListBox x:Name="FieldsListBox" SelectionChanged="FieldsListBox_SelectionChanged"/>
+        </GroupBox>
+
+        <!-- 생성된 코드 출력 -->
+        <GroupBox Header="생성된 코드" Grid.Row="3" Margin="0,0,0,10">
+            <TextBox x:Name="GeneratedCodeTextBox"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Visible"
+                     IsReadOnly="True"/>
+        </GroupBox>
+
+        <!-- 코드 생성 및 저장 버튼 -->
+        <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center">
+            <Button Content="코드 생성" Width="100" Margin="0,0,10,0" Click="GenerateCodeButton_Click"/>
+            <Button Content="파일로 저장" Width="100"  Margin="0,0,10,0" Click="SaveToFileButton_Click"/>
+            <Button Content="파일 불러오기" Width="100" Click="LoadFromFileButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
